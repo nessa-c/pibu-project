@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import LoginModal from './LoginModal.jsx';
+import Image from 'next/image'; // Importing Image from next/image
 
 const NavBar = () => {
     return (
@@ -20,7 +21,7 @@ const NavBar = () => {
                             <li><Link href="/">FAQs</Link></li>
                         </ul>
                     </div>
-                    <a><img src='/pibulogo.svg' className='h-15 ml-2' alt="logo" /></a>
+                    <a className='ml-5' href='/'><Image src='/pibulogo.svg' width={160} height={160} alt="logo" /></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

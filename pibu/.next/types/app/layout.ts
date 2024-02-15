@@ -1,4 +1,4 @@
-// File: /Users/nessaa/Documents/CSS498/pibu/app/layout.tsx
+// File: /Users/nessaa/Documents/PibuProject/pibu/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

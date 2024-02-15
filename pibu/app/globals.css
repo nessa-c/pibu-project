@@ -10,3 +10,14 @@
 details[open] svg {
     transform: rotate(180deg);
 }
+.btn-secondary.selected {
+  background-color: #f0f0f0; /* Change the background color of selected button */
+  color: #333; /* Change the text color of selected button */
+  border-color: #ccc; /* Change the border color of selected button */
+}
+
+.btn-accent.selected {
+  background-color: #ffcc00; /* Change the background color of selected button */
+  color: #333; /* Change the text color of selected button */
+  border-color: #ffcc00; /* Change the border color of selected button */
+}
