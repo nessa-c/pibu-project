@@ -4,5 +4,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('myapi.urls')),
-    path('users/', include('useraccounts.urls'))
+    path('users/', include('useraccounts.urls')),
+    path('sorting/', include('sorting.urls')),
+    path('skinquiz/', include('skinquiz.urls'))
 ]

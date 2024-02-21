@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';  // Import Axios
 import SearchBar from '../components/SearchBar';
-import FiltersTest from '../components/FiltersTest';
+import FiltersTest2 from '../components/FiltersTest2';
 import ProductCard from '../components/ProductCard';
 import NavBar from '../components/NavBar';
 
@@ -31,12 +31,10 @@ function SearchProducts() {
     }, []);
 
     useEffect(() => {
-        // Fetch products from Django backend when component mounts
         fetchProducts();
     }, []);
 
     useEffect(() => {
-        // Update filtered products when search query or selected categories change
         const filtered = products.filter(product => 
             (searchQuery ? isQueryInProduct(product, searchQuery) : true) &&
             (selectedCategories.length === 0 ? true : selectedCategories.includes(product.productCategory))
@@ -62,7 +60,7 @@ function SearchProducts() {
                 <SearchBar onSearch={handleSearch} />
                 <div className="grid xl:grid-cols-5 gap-5">
                     <div className="">
-                        <FiltersTest onFilter={handleFilter} className="w-1/4" />
+                        <FiltersTest2 onFilter={handleFilter} className="w-1/4" />
                     </div>
                     <div className="xl:col-end-6 xl:col-span-4 grid xl:grid-cols-2 gap-5">
                         {filteredProducts.length > 0 ? (

@@ -1,6 +1,8 @@
 import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui'; // Import daisyui package
 import forms from '@tailwindcss/forms'; // Import forms package
+import plugin from 'tailwindcss/plugin';
+
 
 const config: Config = {
   content: [
@@ -20,6 +22,9 @@ const config: Config = {
   plugins: [
     daisyui, // Use daisyui plugin
     forms, // Use forms plugin
+    plugin(function({ addVariant }) {
+      addVariant('not-last', '&:not(:last-child)')
+    })
   ],
   daisyui: {
     themes: [

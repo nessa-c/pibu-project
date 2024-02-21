@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'myapi',
     'useraccounts',
+    'sorting',
+    'skinquiz',
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 
@@ -5,18 +6,27 @@ const LoginModal = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
+  const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await fetch('/users/login/', {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+          const csrftoken = getCookie('csrftoken');
+          
+          const response = await fetch('https://localhost:8000/users/login/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'), // Function to retrieve CSRF token from cookies
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrftoken // Include CSRF token in the headers
             },
             body: JSON.stringify({ username, password }),
-        });
+          });
         
       if (response.ok) {
         // Login successful

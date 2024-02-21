@@ -1089,6 +1089,19 @@ select {
     }
   }
 
+  .btn-outline.btn-primary:hover {
+    --tw-text-opacity: 1;
+    color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity)));
+  }
+
+  @supports (color: color-mix(in oklab, black, black)) {
+
+    .btn-outline.btn-primary:hover {
+      background-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
+      border-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
+    }
+  }
+
   .btn-outline.btn-secondary:hover {
     --tw-text-opacity: 1;
     color: var(--fallback-sc,oklch(var(--sc)/var(--tw-text-opacity)));
@@ -1314,6 +1327,38 @@ select {
 .range:focus {
   outline: none;
 }
+.select {
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 3rem;
+  min-height: 3rem;
+  padding-left: 1rem;
+  padding-right: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  line-height: 2;
+  border-radius: var(--rounded-btn, 0.5rem);
+  border-width: 1px;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1px + 50%),
+    calc(100% - 16.1px) calc(1px + 50%);
+  background-size: 4px 4px,
+    4px 4px;
+  background-repeat: no-repeat;
+}
+.select[multiple] {
+  height: auto;
+}
 .btm-nav > * .label {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1330,6 +1375,10 @@ select {
     border-color: var(--btn-color, var(--fallback-b2));
   }
 
+  .btn-primary {
+    --btn-color: var(--fallback-p);
+  }
+
   .btn-secondary {
     --btn-color: var(--fallback-s);
   }
@@ -1339,6 +1388,11 @@ select {
   }
 }
 @supports (color: color-mix(in oklab, black, black)) {
+
+  .btn-outline.btn-primary.btn-active {
+    background-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
+    border-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
+  }
 
   .btn-outline.btn-secondary.btn-active {
     background-color: color-mix(in oklab, var(--fallback-s,oklch(var(--s)/1)) 90%, black);
@@ -1355,7 +1409,16 @@ select {
   outline-width: 2px;
   outline-offset: 2px;
 }
+.btn-primary {
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity)));
+  outline-color: var(--fallback-p,oklch(var(--p)/1));
+}
 @supports (color: oklch(0 0 0)) {
+
+  .btn-primary {
+    --btn-color: var(--p);
+  }
 
   .btn-secondary {
     --btn-color: var(--s);
@@ -1398,6 +1461,14 @@ select {
 .btn-ghost.btn-active {
   border-color: transparent;
   background-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+}
+.btn-outline.btn-primary {
+  --tw-text-opacity: 1;
+  color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
+}
+.btn-outline.btn-primary.btn-active {
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity)));
 }
 .btn-outline.btn-secondary {
   --tw-text-opacity: 1;
@@ -1806,6 +1877,45 @@ select {
     transform: translateY(0);
   }
 }
+.select:focus {
+  box-shadow: none;
+  border-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+}
+.select-disabled,
+  .select:disabled,
+  .select[disabled] {
+  cursor: not-allowed;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --tw-text-opacity: 0.2;
+}
+.select-disabled::-moz-placeholder, .select:disabled::-moz-placeholder, .select[disabled]::-moz-placeholder {
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-placeholder-opacity)));
+  --tw-placeholder-opacity: 0.2;
+}
+.select-disabled::placeholder,
+  .select:disabled::placeholder,
+  .select[disabled]::placeholder {
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-placeholder-opacity)));
+  --tw-placeholder-opacity: 0.2;
+}
+.select-multiple,
+  .select[multiple],
+  .select[size].select:not([size="1"]) {
+  background-image: none;
+  padding-right: 1rem;
+}
+[dir="rtl"] .select {
+  background-position: calc(0% + 12px) calc(1px + 50%),
+    calc(0% + 16px) calc(1px + 50%);
+}
 @keyframes skeleton {
 
   from {
@@ -1928,6 +2038,9 @@ select {
 .-mt-3 {
   margin-top: -0.75rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -1951,9 +2064,6 @@ select {
 }
 .mr-3 {
   margin-right: 0.75rem;
-}
-.mt-2 {
-  margin-top: 0.5rem;
 }
 .mt-5 {
   margin-top: 1.25rem;
@@ -2009,6 +2119,9 @@ select {
 .w-1\/4 {
   width: 25%;
 }
+.w-1\/6 {
+  width: 16.666667%;
+}
 .w-4 {
   width: 1rem;
 }
@@ -2023,9 +2136,6 @@ select {
 }
 .w-full {
   width: 100%;
-}
-.w-1\/6 {
-  width: 16.666667%;
 }
 .max-w-md {
   max-width: 28rem;
@@ -2197,6 +2307,12 @@ select {
 .font-medium {
   font-weight: 500;
 }
+.font-semibold {
+  font-weight: 600;
+}
+.lowercase {
+  text-transform: lowercase;
+}
 .leading-loose {
   line-height: 2;
 }
@@ -2298,6 +2414,10 @@ details[open] svg {
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
 }
 
+.not-last\:border-b:not(:last-child) {
+  border-bottom-width: 1px;
+}
+
 @media (min-width: 640px) {
 
   .sm\:pb-6 {
@@ -2353,10 +2473,6 @@ details[open] svg {
 
   .xl\:flex {
     display: flex;
-  }
-
-  .xl\:hidden {
-    display: none;
   }
 
   .xl\:grid-cols-2 {
