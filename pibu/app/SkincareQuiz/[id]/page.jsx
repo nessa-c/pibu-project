@@ -90,9 +90,9 @@ export default function QuizRecommendations() {
           {Object.entries(groupedProducts).map(([category, products]) => (
             <div key={category}>
               <h3 className="text-2xl font-semibold text-accent py-5 text-center px-5">{category}s</h3>
-              <div className="flex overflow-x-auto">
+              <div className="flex overflow-x-auto space-x-4">
                 {products.map(product => (
-                  <div key={product.id} className="flex-none w-1/3 mr-5">
+                  <div key={product.id} className="flex-none">
                     <ProductCard product={product} />
                   </div>
                 ))}
