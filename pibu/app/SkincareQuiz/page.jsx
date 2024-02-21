@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
+import Link from 'next/link';
 
 const quizData = [
     {
@@ -11,13 +12,8 @@ const quizData = [
       "type": "multiple"
     },
     {
-      "question": "Age Range",
-      "answers": ["Prefer Not to Say", "10s", "20s", "30s", "40s", "50s", "60s", "70s+"],
-      "type": "single"
-    },
-    {
       "question": "Concerns",
-      "answers": ["Acne", "Sun Damage", "Hyperpigmentation", "Dullness", "Fine Lines", "Intense Dryness", "Redness", "Texture", "Blackheads"],
+      "answers": ['None','Redness','Dryness','Irritation','Uneven-ness','Dullness','Fine Lines','Texture','Oiliness','Sun Protection','Brightening','Acne','Blackheads','Dehydration','Aging', 'Closed Comedones'],
       "type": "multiple"
     },
     {
@@ -26,18 +22,18 @@ const quizData = [
       "type": "single"
     },
     {
-      "question": "Personal Values",
-      "answers": ["100% natural", "Cruelty-Free", "Clean Manufacturing", "Ethical Leadership", "Locally Manufactured", "Organic", "Recyclable Packaging", "Inclusivity", "Plastic-Free"],
+      "question": "Product Preferences",
+      "answers": ['None','Cruelty-Free','Vegan','Clean Ingredients','Sustainable Packaging','Natural Ingredients'],
       "type": "multiple"
     },
     {
-      "question": "Allergies",
-      "answers": ["Fragrance", "Preservatives", "Nickel", "Sulfates", "Essential Oils", "Propylene Glycol", "Retinoids", "Lanolin (Wool)", "Latex", "Methylisothiazolinone (MI)", "Cocamidopropyl Betaine"],
+      "question": "Ingredients to Avoid",
+      "answers": ["None","Fragrance", "Parabens", "Sulfate", "Phthalate", "Dye", "Alcohol", "Silicone", "Mineral Oil", "Essential Oil", "Nuts", "Gluten", "Soy", "Dairy", "Eggs", "Rice"],
       "type": "multiple"
     },
     {
       "question": "Lifestyle",
-      "answers": ["Wear Makeup", "Often Outside", "Irregular/Lack of Sleep", "Stressed", "Dehydrated"],
+      "answers": ["None","Wear Makeup", "Often Outside", "Irregular/Lack of Sleep", "Stressed", "Dehydrated"],
       "type": "multiple"
     },
     {
@@ -51,7 +47,8 @@ const SkincareQuiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [showResults, setShowResults] = useState(false); // State to control the visibility of results
+  const [showResults, setShowResults] = useState(false);
+  const [quizID, setQuizID] = useState(null);
 
   const preSelectedAnswers = ['Cleanser', 'Moisturizer', 'Sunscreen'];
 
@@ -87,24 +84,24 @@ const SkincareQuiz = () => {
 
   const handleSubmit = () => {
     const postData = {
-        skin_type: selectedAnswers[0] ? selectedAnswers[0][0] : null, // Assuming 'skin_type' is the answer to the first question
-        age_range: selectedAnswers[1] ? selectedAnswers[1][0] : null, // Assuming 'age_range' is the answer to the second question
-        concerns: selectedAnswers[2] || [], // Assuming 'concerns' is the answer to the third question
-        budget: selectedAnswers[3] ? parseFloat(selectedAnswers[3][0]) : null, // Assuming 'budget' is the answer to the fourth question
-        personal_values: selectedAnswers[4] || [], // Assuming 'personal_values' is the answer to the fifth question
-        allergies: selectedAnswers[5] || [], // Assuming 'allergies' is the answer to the sixth question
-        lifestyle: selectedAnswers[6] || [], // Assuming 'lifestyle' is the answer to the seventh question
-        skincare_routine: selectedAnswers[7] || [], // Assuming 'skincare_routine' is the answer to the eighth question
+        skin_type: selectedAnswers[0] || [],
+        concerns: selectedAnswers[1] || [], // Assuming 'concerns' is the answer to the third question
+        budget: selectedAnswers[2] ? parseFloat(selectedAnswers[2][0]) : null, // Assuming 'budget' is the answer to the fourth question
+        personal_values: selectedAnswers[3] || [], // Assuming 'personal_values' is the answer to the fifth question
+        allergies: selectedAnswers[4] || [], // Assuming 'allergies' is the answer to the sixth question
+        lifestyle: selectedAnswers[5] || [], // Assuming 'lifestyle' is the answer to the seventh question
+        skincare_routine: selectedAnswers[6] || [], // Assuming 'skincare_routine' is the answer to the eighth question
         // Add more fields as needed
     };
 
     axios.post('http://localhost:8000/skinquiz/', postData)
         .then(response => {
-            // Handle successful submission
-            setShowResults(true); // Optionally, show results after successful submission
+            const { id } = response.data; // Extract the id from the response
+            console.log('Quiz results saved successfully. ID:', id);
+            setQuizID(id);
+            setShowResults(true); // Show results after successful submission
         })
         .catch(error => {
-            // Handle error
             console.error('Error submitting quiz results:', error);
         });
 };
@@ -119,7 +116,7 @@ const SkincareQuiz = () => {
               <h1 className="text-xl font-medium text-secondary text-center">Welcome to the Skincare Quiz!</h1>
               <div className="flex justify-center">
                   <p className="py-5 lg:w-2/3 text-center leading-loose px-5">
-                      "Welcome to our personalized skincare quiz designed to help you discover the perfect skincare routine tailored to your unique needs and preferences. With a myriad of skincare products available, it can be overwhelming to find what works best for your skin type, concerns, lifestyle, and values. By answering a few simple questions about your skin type, age range, concerns, budget, personal values, allergies, lifestyle, and skincare routine preference, we'll provide you with personalized recommendations to achieve your skincare goals effectively and efficiently. Let's embark on this journey towards clear and healthy skin together!"
+                      "Welcome to our personalized skincare quiz designed to help you discover the perfect skincare routine tailored to your unique needs and preferences. With a myriad of skincare products available, it can be overwhelming to find what works best for your skin type, concerns, lifestyle, and values. By answering a few simple questions about your skin type, concerns, budget, personal values, allergies, lifestyle, and skincare routine preference, we'll provide you with personalized recommendations to achieve your skincare goals effectively and efficiently. Let's embark on this journey towards clear and healthy skin together!"
                   </p>
               </div>
               <div className="flex justify-center">
@@ -145,6 +142,7 @@ const SkincareQuiz = () => {
                           </ul>
                       </div>
                   ))}
+                  <Link href={`/SkincareQuiz/${quizID}`} className="btn">View Recommendations</Link>
               </div>
           </div>
       );

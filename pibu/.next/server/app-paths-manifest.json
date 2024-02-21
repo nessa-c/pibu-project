@@ -1,6 +1,6 @@
 {
-  "/products/page": "app/products/page.js",
-  "/products/[id]/page": "app/products/[id]/page.js",
+  "/SkincareQuiz/[id]/page": "app/SkincareQuiz/[id]/page.js",
   "/SkincareQuiz/page": "app/SkincareQuiz/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/products/[id]/page": "app/products/[id]/page.js",
+  "/products/page": "app/products/page.js"
 }

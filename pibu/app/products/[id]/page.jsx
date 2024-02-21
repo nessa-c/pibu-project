@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation'; // Corrected import
+import { usePathname } from 'next/navigation';
 import axios from 'axios';
 import ProductDetails from '../../components/ProductDetails';
 import NavBar from '../../components/NavBar';

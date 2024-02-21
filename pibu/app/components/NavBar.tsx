@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import LoginModal from './LoginModal.jsx';
 import Image from 'next/image'; // Importing Image from next/image
 
 const NavBar = () => {
+    const [userLoggedIn, setUserLoggedIn] = useState(false); // State to track user login status
+
+    const handleLogout = () => {
+        // Implement logout functionality here, e.g., clearing session, updating state, etc.
+        setUserLoggedIn(false); // For demonstration, setting userLoggedIn to false
+    };
+
     return (
         <header className='sticky top-5 z-50 m-5'>
             <div className="navbar rounded-box bg-primary">
@@ -32,14 +38,16 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-secondary mr-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
-                    <div className='mr-2'>
-                        <LoginModal />
-                    </div>
+                    {userLoggedIn ? (
+                        <>
+                            <button onClick={handleLogout} className="btn btn-secondary mr-2">
+                                Logout
+                            </button>
+                            <Link href="/Dashboard" className="btn btn-secondary mr-2">Dashboard</Link>
+                        </>
+                    ) : (
+                        <Link href="/LoginAccount" className="btn btn-secondary mr-2">Login</Link>
+                    )}
                 </div>
             </div>
         </header>

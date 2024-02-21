@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'myapi',
-    'useraccounts',
     'sorting',
     'skinquiz',
+    'user_api.apps.UserApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
 CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'pibubackend.urls'
 
@@ -96,6 +99,17 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'user_api.appuser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
