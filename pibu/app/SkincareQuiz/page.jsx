@@ -128,23 +128,25 @@ const SkincareQuiz = () => {
 
   if (showResults) {
       return (
-          <div>
-              <NavBar />
-              <h1 className="text-xl font-medium text-secondary text-center">Quiz Results</h1>
-              <div className="flex flex-col items-center justify-center my-2">
-                  {Object.keys(selectedAnswers).map((questionIndex, index) => (
-                      <div key={index} className="mb-4">
-                          <h2 className="font-semibold mb-2">{quizData[questionIndex].question}</h2>
-                          <ul>
-                              {selectedAnswers[questionIndex].map((answer, answerIndex) => (
-                                  <li key={answerIndex}>{answer}</li>
-                              ))}
-                          </ul>
-                      </div>
-                  ))}
-                  <Link href={`/SkincareQuiz/${quizID}`} className="btn">View Recommendations</Link>
-              </div>
-          </div>
+        <div>
+            <NavBar />
+            <h1 className="text-2xl font-bold text-secondary text-center">Quiz Results</h1>
+            <div className="flex justify-center">
+            <div className="flex flex-col justify-center my-5">
+                {Object.keys(selectedAnswers).map((questionIndex, index) => (
+                <div key={index} className="mb-4">
+                    <h2 className="font-semibold mb-2">{quizData[questionIndex].question}</h2>
+                    <ul className='list-disc list-inside'>
+                    {selectedAnswers[questionIndex].map((answer, answerIndex) => (
+                        <li key={answerIndex}>{answer}</li>
+                    ))}
+                    </ul>
+                </div>
+                ))}
+            </div>
+            <Link href={`/SkincareQuiz/${quizID}`} className="btn btn-secondary self-center ml-4">View Recommendations</Link>
+            </div>
+        </div>
       );
   }
 

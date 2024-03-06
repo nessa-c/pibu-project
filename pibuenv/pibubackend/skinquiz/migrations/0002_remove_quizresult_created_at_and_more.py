@@ -10,10 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='quizresult',
-            name='created_at',
-        ),
         migrations.AlterField(
             model_name='quizresult',
             name='age_range',

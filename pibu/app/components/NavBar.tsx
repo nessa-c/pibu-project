@@ -6,7 +6,6 @@ const NavBar = () => {
     const [userLoggedIn, setUserLoggedIn] = useState(false); // State to track user login status
 
     const handleLogout = () => {
-        // Implement logout functionality here, e.g., clearing session, updating state, etc.
         setUserLoggedIn(false); // For demonstration, setting userLoggedIn to false
     };
 
@@ -23,17 +22,15 @@ const NavBar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-6 z-[1] -ml-1 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link href="/SkincareQuiz">Skincare Quiz</Link></li>
                             <li><Link href="/products">Browse</Link></li>
-                            <li><Link href="/">Learn</Link></li>
                             <li><Link href="/">FAQs</Link></li>
                         </ul>
                     </div>
                     <a className='ml-5' href='/'><Image src='/pibulogo.svg' width={160} height={160} alt="logo" /></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 gap-5">
                         <li><Link href="/SkincareQuiz">Skincare Quiz</Link></li>
                         <li><Link href="/products">Browse</Link></li>
-                        <li><Link href="/">Learn</Link></li>
                         <li><Link href="/">FAQs</Link></li>
                     </ul>
                 </div>

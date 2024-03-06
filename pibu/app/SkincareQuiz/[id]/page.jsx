@@ -77,7 +77,7 @@ export default function QuizRecommendations() {
   return (
     <div>
       <NavBar />
-      <h1 className="text-4xl font-extrabold text-secondary text-center mb-5">Quiz Results</h1>
+      <h1 className="text-2xl font-extrabold text-secondary text-center mb-5">Quiz Results</h1>
       {quizResults && (
         <div className='text-center'>
           <p>Your skin type: {quizResults.skin_type.join(', ')}</p>
@@ -85,7 +85,7 @@ export default function QuizRecommendations() {
         </div>
       )}
       <div className='my-10'>
-      <h1 className="text-4xl font-extrabold text-secondary text-center">Recommended Products</h1>
+      <h1 className="text-2xl font-extrabold text-secondary text-center">Recommended Products</h1>
         <div>
           {Object.entries(groupedProducts).map(([category, products]) => (
             <div key={category}>
